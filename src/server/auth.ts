@@ -3,9 +3,25 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
+import SpotifyProvider from "next-auth/providers/spotify";
 
 import { env } from "~/env.mjs";
+
+const scopes = [
+  "user-read-email",
+  "playlist-read-private",
+  "playlist-read-collaborative",
+  "user-read-currently-playing",
+  "user-modify-playback-state",
+].join(",");
+
+const params = {
+  scope: scopes,
+};
+
+const LOGIN_URL =
+  "https://accounts.spotify.com/authorize?" +
+  new URLSearchParams(params).toString();
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -34,31 +50,64 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
-  callbacks: {
-    session: ({ session, token }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: token.sub,
-      },
-    }),
-  },
   providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+    SpotifyProvider({
+      clientId: env.SPOTIFY_CLIENT_ID,
+      clientSecret: env.SPOTIFY_CLIENT_SECRET,
+      authorization: LOGIN_URL,
     }),
-    /**
-     * ...add more providers here.
-     *
-     * Most other providers require a bit more work than the Discord provider. For example, the
-     * GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
-     * model. Refer to the NextAuth.js docs for the provider you want to use. Example:
-     *
-     * @see https://next-auth.js.org/providers/github
-     */
   ],
+  callbacks: {
+    async jwt({ token, account }) {
+      // Persist the OAuth access_token to the token right after signin
+      if (account) {
+        token.accessToken = account.access_token;
+        token.refreshToken = account.refresh_token;
+        token.accessTokenExpires = account.expires_at;
+        return token;
+      }
+      // access token has not expired
+      if (
+        token.accessTokenExpires &&
+        Date.now() < token.accessTokenExpires * 1000
+      ) {
+        return token;
+      }
+
+      // access token has expired
+      return await refreshAccessToken(token);
+    },
+    async session({ session, token, user }) {
+      // Send properties to the client, like an access_token from a provider.
+      session.accessToken = token.accessToken;
+      return session;
+    },
+  },
+  secret: env.SECRET,
 };
+
+async function refreshAccessToken(token: any) {
+  const params = new URLSearchParams();
+  params.append("grant_type", "refresh_token");
+  params.append("refresh_token", token.refreshToken);
+  const buffer = Buffer.from(env.SPOTIFY_CLIENT_ID + ":" + env.SPOTIFY_CLIENT_SECRET).toString("base64") 
+  const response = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: {
+      Authorization:
+        "Basic " + buffer
+        ,
+    },
+    body: params,
+  });
+  const data = await response.json();
+  return {
+    ...token,
+    accessToken: data.access_token,
+    refreshToken: data.refresh_token ?? token.refreshToken,
+    accessTokenExpires: Date.now() + data.expires_in * 1000,
+  };
+}
 
 /**
  * Wrapper for `getServerSession` so that you don't need to import the `authOptions` in every file.
