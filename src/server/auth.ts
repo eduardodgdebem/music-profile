@@ -8,7 +8,9 @@ import SpotifyProvider from "next-auth/providers/spotify";
 import { env } from "~/env.mjs";
 
 const scopes = [
+  "user-top-read",
   "user-read-email",
+  "user-read-recently-played",
   "playlist-read-private",
   "playlist-read-collaborative",
   "user-read-currently-playing",
@@ -90,13 +92,13 @@ async function refreshAccessToken(token: any) {
   const params = new URLSearchParams();
   params.append("grant_type", "refresh_token");
   params.append("refresh_token", token.refreshToken);
-  const buffer = Buffer.from(env.SPOTIFY_CLIENT_ID + ":" + env.SPOTIFY_CLIENT_SECRET).toString("base64") 
+  const buffer = Buffer.from(
+    env.SPOTIFY_CLIENT_ID + ":" + env.SPOTIFY_CLIENT_SECRET,
+  ).toString("base64");
   const response = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
-      Authorization:
-        "Basic " + buffer
-        ,
+      Authorization: "Basic " + buffer,
     },
     body: params,
   });
