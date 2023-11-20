@@ -29,7 +29,7 @@ export default async function Artist({ params }: { params: { id: string } }) {
         /> */}
 
         <div>
-          <h1 className="text-vanila-bright text-4xl font-bold">
+          <h1 className="dark:text-vanila-bright text-4xl font-bold">
             {artist.name}
           </h1>
           <p className="text-2xl">followers: {artist.followers.total}</p>

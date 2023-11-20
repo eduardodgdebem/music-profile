@@ -29,11 +29,19 @@ export default async function Track({ params }: { params: { id: string } }) {
           ></Image>
         </AngledElement>
         <div className="">
-          <h1 className="text-vanila-bright text-4xl font-bold">{track.name}</h1>
+          <h1 className="text-4xl font-bold dark:text-vanila-bright">
+            {track.name}
+          </h1>
           <div className="flex">
             {track.artists.map((artist, i) => (
-              <Link href={`/artist/${artist.id}`} key={artist.id} className="text-2xl  hover:text-vanila-bright hover:underline duration-300">
-                <p>{artist.name} {(track.artists.length == i + 1) ? "" : ", "}</p>
+              <Link
+                href={`/artist/${artist.id}`}
+                key={artist.id}
+                className="text-2xl duration-300 hover:underline dark:hover:text-vanila-bright"
+              >
+                <p>
+                  {artist.name} {track.artists.length == i + 1 ? "" : ", "}
+                </p>
               </Link>
             ))}
           </div>

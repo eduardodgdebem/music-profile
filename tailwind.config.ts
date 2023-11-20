@@ -20,7 +20,10 @@ export default {
       green: "#59eb15",
       gray: "#3d424f",
       "gray-dark": "#23262d",
+      black: "#0f1112",
+      white: "#fcfcfa"
     },
   },
+  darkMode: 'class',
   plugins: [],
 } satisfies Config;

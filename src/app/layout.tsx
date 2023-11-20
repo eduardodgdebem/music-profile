@@ -5,6 +5,9 @@ import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { Nav } from "./_components/nav";
+import { getServerAuthSession } from "~/server/auth";
+import { ThemeProvider } from "next-themes";
+import { Providers } from "./providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,26 +20,28 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerAuthSession();
+
   return (
-    <html lang="en">
-      <body className="bg-vanila-brigh text-vanila max-h-screen overflow-hidden">
-        <TRPCReactProvider cookies={cookies().toString()}>
-          <div className="flex max-h-screen flex-col-reverse gap-2 p-2 sm:flex-row">
-            <div className="">
-              <Nav />
+      <html lang="en" >
+        <body className="bg-vanila-brigh max-h-screen overflow-hidden text-vanila">
+          <TRPCReactProvider cookies={cookies().toString()}>
+            <Providers>
+            <div className="flex h-screen max-h-screen flex-col-reverse sm:flex-row bg-white text-gray-dark dark:bg-black dark:text-vanila">
+              {session && <Nav />}
+              <main className="relative h-full max-h-screen w-full overflow-hidden overflow-y-auto p-2 duration-300 max-sm:h-screen sm:opacity-[0.95] sm:hover:opacity-100">
+                {children}
+                {/* <div className="from-gray-dark pointer-events-none sticky bottom-0 left-0 h-48 w-full bg-gradient-to-t to-[transparent]"></div> */}
+              </main>
             </div>
-            <main className="bg-gray-dark relative max-h-screen max-sm:h-screen w-full overflow-hidden rounded-lg">
-              {children}
-              <div className="from-gray-dark pointer-events-none sticky bottom-0 left-0 h-48 w-full bg-gradient-to-t to-[transparent]"></div>
-            </main>
-          </div>
-        </TRPCReactProvider>
-      </body>
-    </html>
+            </Providers>
+          </TRPCReactProvider>
+        </body>
+      </html>
   );
 }

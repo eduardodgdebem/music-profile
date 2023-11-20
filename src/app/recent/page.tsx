@@ -7,7 +7,7 @@ export default async function Recent() {
   return (
     <section>
       <header className="p-2">
-        <h1 className="text-vanila-bright text-4xl font-bold">Recents Tracks</h1>
+        <h1 className="dark:text-vanila-bright text-4xl font-bold">Recents Tracks</h1>
       </header>
       <TracksGrid tracks={recentTracks.map(({ track }) => track)} />
     </section>

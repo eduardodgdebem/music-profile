@@ -1,11 +1,4 @@
 import { api } from "~/trpc/server";
-import Image from "next/image";
-import {
-  playlistTracksRes,
-  trackType,
-} from "~/server/api/routers/spotify.types";
-import TracksGrid from "~/app/_components/tracksGrid";
-import Link from "next/link";
 import TrackRow from "~/app/_components/trackRow";
 
 export default async function Artist({ params }: { params: { id: string } }) {
@@ -21,21 +14,21 @@ export default async function Artist({ params }: { params: { id: string } }) {
   });
 
   return (
-    <section className="flex h-full w-full">
-      <div className="w-fit">
+    <section className="flex h-full w-full gap-2 max-sm:flex-col">
+      <div className="w-min max-sm:flex max-sm:w-full max-sm:gap-2">
         <img
           src={image.url}
           alt={`${playlist.name} cover`}
-          className="objcet-cover h-[320px] min-w-[320px]"
+          className="objcet-cover h-[320px] min-w-[320px] rounded-md max-sm:h-[160px] max-sm:min-w-[160px]"
         />
         <div className="w-fit">
-          <h1>{playlist.name}</h1>
-          <p>by {playlist.owner.display_name}</p>
-          <p>{playlist.tracks.total} tracks</p>
+          <h1 className="text-4xl dark:text-vanila-bright">{playlist.name}</h1>
+          <p className="text-xl">by {playlist.owner.display_name}</p>
+          <p className="text-xl">{playlist.tracks.total} tracks</p>
         </div>
       </div>
 
-      <div className="grid h-full w-full grid-cols-1 overflow-x-auto">
+      <div className="grid h-full w-full grid-cols-1 sm:overflow-x-auto gap-2">
         {playlistItems.map((item) => {
           if (item?.track)
             return (
