@@ -5,13 +5,13 @@ import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { ThemeToggle } from "./themeToggle";
 
-const getSelected = () => {
-  const path = usePathname();
-  return path?.split("/")?.[1] || "/";
+const getSelected = (path: string) => {
+  return path?.split("/")?.[1] ?? "/";
 };
 
 export const Nav = () => {
-  const [selected, setSelected] = useState(getSelected());
+  const path = usePathname();
+  const [selected, setSelected] = useState(getSelected(path));
 
   const buttonStyle =
     "p-2 rounded-md text-sm dark:hover:bg-gray hover:bg-vanila-dark duration-300 h-fit";

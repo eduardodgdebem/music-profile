@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
-import { getServerAuthSession } from "~/server/auth";
+import { SessionWithAcessToken, getServerAuthSession } from "~/server/auth";
 import {
   artistType,
   audioFeaturesType,
@@ -12,11 +12,11 @@ import {
   trackType,
 } from "./spotify.types";
 
-const spotifyReqByUrl = async <T>(url: string): Promise<T> => {
-  const session = (await getServerAuthSession()) as any;
+const spotifyReqByUrl = async <T>(url: string) => {
+  const session = (await getServerAuthSession()) as SessionWithAcessToken;
   return (await fetch(url, {
     headers: { Authorization: `Bearer ${session.accessToken}` },
-  }).then((r) => r.json())) as any;
+  }).then((r) => r.json())) as T;
 };
 
 const addQuery = (url: string, query: string) => {
@@ -104,11 +104,8 @@ export const spotifyRouter = createTRPCRouter({
     ).then((res) => res.items),
   ),
 
-  getUserPlaylists: protectedProcedure.query(
-    () =>
-      getAllItems(`https://api.spotify.com/v1/me/playlists`) as Promise<
-        playlistType[]
-      >,
+  getUserPlaylists: protectedProcedure.query(() =>
+    getAllItems<playlistType>(`https://api.spotify.com/v1/me/playlists`),
   ),
 
   getPlaylistsById: protectedProcedure

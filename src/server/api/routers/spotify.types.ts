@@ -200,7 +200,7 @@ export type playlistType = {
     type: string;
     uri: string;
   };
-  primary_color: any;
+  primary_color: string;
   public: boolean;
   snapshot_id: string;
   tracks: {
@@ -231,7 +231,7 @@ export type playlistItemType =  {
     uri: string;
   };
   is_local: boolean;
-  primary_color: any;
+  primary_color: string;
   track: trackType & {
     episode: boolean;
     preview_url: string;

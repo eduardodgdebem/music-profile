@@ -4,14 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-const getSelected = () => {
-  const path = usePathname();
+const getSelected = (path: string) => {
   const pathSplited = path?.split("/");
   return pathSplited?.[pathSplited.length - 1];
 };
 
 export default function TopArtistsNav() {
-  const [selected, setSelected] = useState(getSelected());
+  const path = usePathname();
+  const [selected, setSelected] = useState(getSelected(path));
 
   const buttonStyle =
     "p-2 rounded-md text-sm hover:text-vanila-bright duration-300 hover:bg-vanila-dark dark:hover:bg-gray font-bold";

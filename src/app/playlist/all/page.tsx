@@ -31,7 +31,7 @@ const PlayListCard = ({ playlist }: { playlist: playlistType }) => {
 
 export default async function Playlists() {
   const playlists =
-    (await api.spotify.getUserPlaylists.query()) as playlistType[];
+    await api.spotify.getUserPlaylists.query();
 
   return (
     <section>
@@ -40,7 +40,7 @@ export default async function Playlists() {
       </header>
       <div className="grid h-full w-full grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] justify-items-center gap-4">
         {playlists.map((playlist) => (
-          <PlayListCard playlist={playlist} />
+          <PlayListCard playlist={playlist} key={playlist.id}/>
         ))}
       </div>
     </section>
