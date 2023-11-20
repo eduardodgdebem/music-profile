@@ -10,9 +10,14 @@ export default async function Home() {
 
   if (!session)
     return (
-      <div>
-        <Link href="/api/auth/signin">Sign in</Link>
-      </div>
+      <section className="flex h-full w-full items-center justify-center">
+        <Link
+          href="/api/auth/signin"
+          className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+        >
+          Sign in
+        </Link>
+      </section>
     );
 
   const user = await api.spotify.getUser.query();
@@ -20,8 +25,8 @@ export default async function Home() {
   const recentTracks = await api.spotify.getUserRecentPlayedTracks.query();
 
   return (
-    <section className="w-full h-full rounded-lg p-2">
-      <div className="flex h-fit gap-2 mb-4">
+    <section className="h-full w-full rounded-lg p-2">
+      <div className="mb-4 flex h-fit gap-2">
         {image ? (
           <Image
             src={image?.url}
@@ -37,7 +42,7 @@ export default async function Home() {
         )}
         <div className="items-between flex h-auto flex-col justify-between">
           <div>
-            <h1 className="text-center text-2xl sm:text-4xl dark:text-white">
+            <h1 className="text-center text-2xl dark:text-white sm:text-4xl">
               {user.display_name}
             </h1>
             <p>{user.followers.total} followers</p>
@@ -53,8 +58,8 @@ export default async function Home() {
         </div>
       </div>
       <section className="relative overflow-y-auto sm:max-h-[calc(100%-310px)]">
-        <header className="sticky top-0 z-10 flex w-full justify-between bg-white dark:bg-black pb-2 pt-2">
-          <h2 className="text-2xl sm:text-3xl font-bold dark:text-vanila">
+        <header className="sticky top-0 z-10 flex w-full justify-between bg-white pb-2 pt-2 dark:bg-black">
+          <h2 className="text-2xl font-bold dark:text-vanila sm:text-3xl">
             Recents Tracks
           </h2>
         </header>

@@ -15,6 +15,7 @@ import {
 
 const spotifyReqByUrl = async <T>(url: string) => {
   const session = (await getServerAuthSession()) as SessionWithAcessToken;
+  console.log(session.accessToken)
   return (await fetch(url, {
     headers: { Authorization: `Bearer ${session.accessToken}` },
   }).then((r) => r.json())) as T;
