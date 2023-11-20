@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { trackType } from "~/server/api/routers/spotify.types";
 import Image from "next/image";
-import { AngledElement } from "./angledElement";
-import { PreviewPlayer } from "./previewPlayer";
 
 export default function TrackRow({ track }: { track: trackType }) {
   return (

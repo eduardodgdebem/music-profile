@@ -6,13 +6,13 @@ export const PreviewPlayer = ({ previewUrl }: { previewUrl: string }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const buttonClick = () => {
+  const buttonClick = async () => {
     if (!audioRef.current) return;
 
     if (isPlaying) audioRef.current.pause();
     else {
       audioRef.current.currentTime = 0;
-      audioRef.current.play();
+      await audioRef.current.play();
     }
 
     setIsPlaying(!isPlaying);
@@ -33,7 +33,7 @@ export const PreviewPlayer = ({ previewUrl }: { previewUrl: string }) => {
         onEnded={handleEnd}
         className="hidden"
       ></audio>
-      {isPlaying ? <p className="text-6xl">&#9208;</p> : <p className="text-4xl">&#9654;</p>}
+      {isPlaying ? <p className="text-5xl">&#9208;</p> : <p className="text-4xl">&#9654;</p>}
     </button>
   );
 };

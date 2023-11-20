@@ -1,6 +1,5 @@
 import { api } from "~/trpc/server";
 import TrackRow from "~/app/_components/trackRow";
-import { PreviewPlayer } from "~/app/_components/previewPlayer";
 
 export default async function Artist({ params }: { params: { id: string } }) {
   const playlist = await api.spotify.getPlaylistsById.query(params);

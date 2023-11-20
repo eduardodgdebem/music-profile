@@ -34,7 +34,6 @@ export default async function Track({ params }: { params: { id: string } }) {
   return (
     <div className="flex flex-col gap-2 p-2">
       <section className="flex gap-2">
-        {/* <AngledElement> */}
         <Image
           src={image.url}
           height={image.height}
@@ -42,7 +41,6 @@ export default async function Track({ params }: { params: { id: string } }) {
           alt={`Photo of the album ${track.album.name}`}
           className="rounded-lg"
         ></Image>
-        {/* </AngledElement> */}
         <div className="">
           <h1 className="text-4xl font-bold dark:text-vanila-bright">
             {track.name}
