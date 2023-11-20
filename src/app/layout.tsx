@@ -36,7 +36,6 @@ export default async function RootLayout({
               {session && <Nav />}
               <main className="relative h-full max-h-screen w-full overflow-hidden overflow-y-auto duration-300 max-sm:h-screen sm:opacity-[0.95] sm:hover:opacity-100">
                 {children}
-                {/* <div className="from-gray-dark pointer-events-none sticky bottom-0 left-0 h-48 w-full bg-gradient-to-t to-[transparent]"></div> */}
               </main>
             </div>
             </Providers>

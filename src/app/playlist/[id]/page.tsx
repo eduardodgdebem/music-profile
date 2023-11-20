@@ -14,7 +14,7 @@ export default async function Artist({ params }: { params: { id: string } }) {
   });
 
   return (
-    <section className="flex h-full w-full gap-2 max-sm:flex-col m-2">
+    <section className="p-2 h-screen flex w-full gap-2 max-sm:flex-col">
       <div className="w-min max-sm:flex max-sm:w-full max-sm:gap-2">
         <img
           src={image.url}
