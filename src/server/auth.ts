@@ -85,7 +85,7 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  secret: env.SECRET,
+  secret: env.NEXTAUTH_SECRET,
 };
 
 async function refreshAccessToken(token: any) {
