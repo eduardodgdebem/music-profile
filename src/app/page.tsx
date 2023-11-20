@@ -3,7 +3,6 @@ import Link from "next/link";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 import Image from "next/image";
-import { PlaylistsGrid } from "./_components/playlistsGrid";
 import TracksGrid from "./_components/tracksGrid";
 
 export default async function Home() {
@@ -12,7 +11,7 @@ export default async function Home() {
   if (!session)
     return (
       <div>
-        <Link href="/api/auth/signin/spotify">Sign in</Link>
+        <Link href="/api/auth/signin">Sign in</Link>
       </div>
     );
 
