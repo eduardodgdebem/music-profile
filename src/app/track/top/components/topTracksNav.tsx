@@ -19,7 +19,7 @@ export default function TopArtistsNav() {
     "bg-vanila dark:bg-gray dark:text-vanila-bright " + buttonStyle;
 
   return (
-    <header className="flex w-full justify-between p-2">
+    <header className="flex w-full justify-between p-2 sticky top-0 z-10 bg-white dark:bg-black">
       <h1 className="text-4xl font-bold dark:text-vanila-bright">Top Tracks</h1>
       <div className="flex gap-2">
         <Link

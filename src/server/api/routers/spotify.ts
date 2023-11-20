@@ -9,6 +9,7 @@ import {
   playlistItemType,
   playlistType,
   recentPlayedResponse,
+  spotifyUserType,
   trackType,
 } from "./spotify.types";
 
@@ -104,6 +105,10 @@ export const spotifyRouter = createTRPCRouter({
     ).then((res) => res.items),
   ),
 
+  getSomePlaylists: protectedProcedure.query(() => 
+    spotifyReqByUrl<paginatedResponse<playlistType[]>>('https://api.spotify.com/v1/me/playlists')
+  ),
+
   getUserPlaylists: protectedProcedure.query(() =>
     getAllItems<playlistType>(`https://api.spotify.com/v1/me/playlists`),
   ),
@@ -120,5 +125,10 @@ export const spotifyRouter = createTRPCRouter({
     .input(z.object({ url: z.string() }))
     .query(({ input }) => {
       return getAllItems<playlistItemType>(input.url);
+    }),
+
+  getUser: protectedProcedure
+    .query(() => {
+      return spotifyReqByUrl<spotifyUserType>('https://api.spotify.com/v1/me');
     }),
 });

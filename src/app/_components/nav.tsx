@@ -22,7 +22,7 @@ export const Nav = () => {
   };
 
   return (
-    <nav className="flex flex-col border-r-2 border-vanila dark:border-gray p-2 duration-300 max-sm:max-h-fit max-sm:flex-row justify-between sm:h-screen">
+    <nav className="flex flex-col items-center border-r-2 border-vanila dark:border-gray p-2 duration-300 max-sm:max-h-fit max-sm:flex-row justify-between sm:h-screen">
       <section className="flex flex-col gap-2 max-sm:max-h-fit max-sm:flex-row max-sm:justify-between">
         <Link
           href="/"
@@ -44,13 +44,6 @@ export const Nav = () => {
           onClick={() => onSelect("track")}
         >
           TOP TRACKS
-        </Link>
-        <Link
-          href="/recent"
-          className={selected === "recent" ? selectedStyle : buttonStyle}
-          onClick={() => onSelect("recent")}
-        >
-          RECENT
         </Link>
         <Link
           href="/playlist/all"

@@ -6,9 +6,9 @@ export default function TopTracksLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <section className="m-2">
       <TopTracksNav />
       {children}
-    </>
+    </section>
   );
 }

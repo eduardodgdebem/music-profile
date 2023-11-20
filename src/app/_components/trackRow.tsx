@@ -2,12 +2,13 @@ import Link from "next/link";
 import { trackType } from "~/server/api/routers/spotify.types";
 import Image from "next/image";
 import { AngledElement } from "./angledElement";
+import { PreviewPlayer } from "./previewPlayer";
 
 export default function TrackRow({ track }: { track: trackType }) {
   return (
     <Link
       href={`/track/${track.id}`}
-      className="flex h-full gap-2 duration-300 hover:opacity-50"
+      className="flex h-full w-full gap-2 duration-300 hover:opacity-50"
     >
       {track.album?.images[2] && (
         <Image
@@ -19,7 +20,7 @@ export default function TrackRow({ track }: { track: trackType }) {
         />
       )}
       <div key={track.id}>
-        <h3 className="dark:hover:text-vanila-bright text-xl duration-300">
+        <h3 className="text-xl duration-300 dark:hover:text-vanila-bright">
           {track.name}
         </h3>
         <p className="text-sm">

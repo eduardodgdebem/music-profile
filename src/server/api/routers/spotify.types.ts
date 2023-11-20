@@ -101,7 +101,7 @@ export type paginatedResponse<T> = {
   offset: number;
   previous: string;
   total: number;
-  items: T
+  items: T;
 };
 
 export const keysByNumber = [
@@ -213,7 +213,7 @@ export type playlistType = {
 
 export type playlistTracksRes = {
   href: string;
-  items: playlistItemType[]
+  items: playlistItemType[];
   limit: number;
   next: number;
   offset: number;
@@ -221,7 +221,7 @@ export type playlistTracksRes = {
   total: number;
 };
 
-export type playlistItemType =  {
+export type playlistItemType = {
   added_at: string;
   added_by: {
     external_urls: { spotify: string };
@@ -238,4 +238,31 @@ export type playlistItemType =  {
     external_ids: { isrc: string };
   };
   video_thumbnail: { url: string };
-}
+};
+
+export type spotifyUserType = {
+  country: string;
+  display_name: string;
+  email: string;
+  explicit_content: {
+    filter_enabled: boolean;
+    filter_locked: boolean;
+  };
+  external_urls: {
+    spotify: string;
+  };
+  followers: {
+    href: string;
+    total: 0;
+  };
+  href: string;
+  id: string;
+  images: {
+    url: string;
+    height: number;
+    width: number;
+  }[];
+  product: string;
+  type: string;
+  uri: string;
+};

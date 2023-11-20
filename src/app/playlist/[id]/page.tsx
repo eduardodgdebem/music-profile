@@ -1,5 +1,6 @@
 import { api } from "~/trpc/server";
 import TrackRow from "~/app/_components/trackRow";
+import { PreviewPlayer } from "~/app/_components/previewPlayer";
 
 export default async function Artist({ params }: { params: { id: string } }) {
   const playlist = await api.spotify.getPlaylistsById.query(params);
@@ -14,7 +15,7 @@ export default async function Artist({ params }: { params: { id: string } }) {
   });
 
   return (
-    <section className="flex h-full w-full gap-2 max-sm:flex-col">
+    <section className="flex h-full w-full gap-2 max-sm:flex-col m-2">
       <div className="w-min max-sm:flex max-sm:w-full max-sm:gap-2">
         <img
           src={image.url}

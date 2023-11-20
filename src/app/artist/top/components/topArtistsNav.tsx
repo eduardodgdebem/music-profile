@@ -14,12 +14,12 @@ export default function TopArtistsNav() {
   const [selected, setSelected] = useState(getSelected(path));
 
   const buttonStyle =
-    "p-2 rounded-md text-sm hover:text-vanila-bright duration-300 hover:bg-vanila-dark dark:hover:bg-gray font-bold";
+    "p-2 rounded-md text-sm hover:text-vanila-bright duration-300 hover:bg-vanila-dark dark:hover:bg-gray font-bold text-center";
   const selectedStyle =
     "bg-vanila dark:bg-gray dark:text-vanila-bright " + buttonStyle;
 
   return (
-    <header className="flex w-full justify-between p-2">
+    <header className="flex w-full justify-between p-2 sticky top-0 z-10 bg-white dark:bg-black">
       <h1 className="text-4xl font-bold dark:text-vanila-bright">
         Top Artists
       </h1>

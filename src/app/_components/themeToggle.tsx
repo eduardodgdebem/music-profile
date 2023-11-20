@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 
 export const ThemeToggle = () => {
   const [mounted, setMounted] = useState(false);
-  const {systemTheme, theme, setTheme } = useTheme();
+  const { systemTheme, theme, setTheme } = useTheme();
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
@@ -15,15 +15,12 @@ export const ThemeToggle = () => {
     return null;
   }
 
-
   return (
     <button
-      onClick={() =>
-        theme == "dark" ? setTheme("light") : setTheme("dark")
-      }
-      className="w-min bg-vanila dark:bg-gray hover:bg-vanila-dark dark:hover:bg-gray rounded-lg px-8 p-2 text-3xl transition-all duration-300"
+      onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
+      className="w-1 rounded-lg bg-vanila p-2 px-8 text-2xl transition-all duration-300 hover:bg-vanila-dark dark:bg-gray dark:hover:bg-gray flex justify-center items-center"
     >
-      {theme == "dark" ? "☀️" : "🌙" }
+      <p>{theme == "dark" ? "☀️" : "🌙"}</p>
     </button>
   );
 };

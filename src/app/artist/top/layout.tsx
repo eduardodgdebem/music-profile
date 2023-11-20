@@ -7,9 +7,9 @@ export default function TopArtistsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <section className="m-2">
       <TopArtistsNav />
       {children}
-    </>
+    </section>
   );
 }
