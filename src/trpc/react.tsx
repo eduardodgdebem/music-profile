@@ -35,6 +35,7 @@ export function TRPCReactProvider(props: {
           },
         }),
       ],
+
     }),
   );
 

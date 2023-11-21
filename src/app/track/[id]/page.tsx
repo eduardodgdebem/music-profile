@@ -90,7 +90,7 @@ export default async function Track({ params }: { params: { id: string } }) {
         />
         <TrackFieldCells
           title="Modality"
-          value={keysByNumber[audioFeatures.mode] ?? ""}
+          value={modeByNumber[audioFeatures.mode] ?? ""}
         />
         <TrackFieldCells
           title="Time Signature"

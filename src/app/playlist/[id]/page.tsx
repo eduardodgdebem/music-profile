@@ -22,7 +22,7 @@ export default async function Artist({ params }: { params: { id: string } }) {
           alt={`${playlist.name} cover`}
           className="objcet-cover h-[320px] min-w-[320px] rounded-md max-sm:h-[160px] max-sm:min-w-[160px]"
         />
-        <div className=" w-fit">
+        <div className="w-fit">
           <h1 className="text-3xl sm:text-4xl dark:text-vanila-bright">{playlist.name}</h1>
           <p className="text-base sm:text-xl">by {playlist.owner.display_name}</p>
           <p className="text-base sm:text-xl">{playlist.tracks.total} tracks</p>
