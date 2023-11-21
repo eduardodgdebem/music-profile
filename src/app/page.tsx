@@ -25,13 +25,13 @@ export default async function Home() {
   const recentTracks = await api.spotify.getUserRecentPlayedTracks.query();
 
   return (
-    <section className="h-full w-full rounded-lg p-2">
+    <section className="w-full rounded-lg p-2">
       <div className="mb-4 flex h-fit gap-2">
         {image ? (
           <Image
             src={image?.url}
-            height={image?.height}
-            width={image?.width}
+            height={300}
+            width={300}
             alt="User profile image"
             className="rounded-md"
           />

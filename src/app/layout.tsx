@@ -29,7 +29,7 @@ export default async function RootLayout({
 
   return (
       <html lang="en" >
-        <body className="bg-vanila-brigh max-h-screen overflow-hidden text-vanila">
+        <body className="bg-vanila-brigh max-h-[100svh] overflow-hidden text-vanila">
           <TRPCReactProvider cookies={cookies().toString()}>
             <Providers>
             <div className="flex h-screen max-h-screen flex-col-reverse sm:flex-row bg-white text-gray-dark dark:bg-black dark:text-vanila">
