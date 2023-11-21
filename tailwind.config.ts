@@ -21,7 +21,8 @@ export default {
       gray: "#3d424f",
       "gray-dark": "#23262d",
       black: "#0f1112",
-      white: "#fcfcfa"
+      white: "#fcfcfa",
+      "green-spotify": "rgb(29, 185, 84)"
     },
   },
   darkMode: 'class',

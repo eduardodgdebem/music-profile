@@ -41,29 +41,46 @@ export default async function Track({ params }: { params: { id: string } }) {
           alt={`Photo of the album ${track.album.name}`}
           className="rounded-lg"
         ></Image>
-        <div className="">
-          <h1 className="text-4xl font-bold dark:text-vanila-bright">
-            {track.name}
-          </h1>
-          <div className="flex">
-            {track.artists.map((artist, i) => (
-              <Link
-                href={`/artist/${artist.id}`}
-                key={artist.id}
-                className="text-2xl duration-300 hover:underline dark:hover:text-vanila-bright"
-              >
-                <p>
-                  {artist.name} {track.artists.length == i + 1 ? "" : ", "}
-                </p>
-              </Link>
-            ))}
+        <div className="flex flex-col justify-between">
+          <div className="flex flex-col gap-1">
+            <h1 className="text-4xl font-bold dark:text-vanila-bright">
+              {track.name}
+            </h1>
+            <div className="flex">
+              {track.artists.map((artist, i) => (
+                <Link
+                  href={`/artist/${artist.id}`}
+                  key={artist.id}
+                  className="text-2xl duration-300 hover:underline dark:hover:text-vanila-bright"
+                >
+                  <p>
+                    {artist.name} {track.artists.length == i + 1 ? "" : ", "}
+                  </p>
+                </Link>
+              ))}
+            </div>
+            <p>
+              {track.album.name} &#x2022;{" "}
+              {track.album.release_date.split("-")[0]}
+            </p>
+            {track.preview_url && (
+              <div>
+                <PreviewPlayer previewUrl={track.preview_url} />
+              </div>
+            )}
           </div>
-          <p>{track.album.name}</p>
-          <PreviewPlayer previewUrl={track.preview_url} />
+          {track.external_urls.spotify && (
+            <Link
+              href={track.external_urls.spotify}
+              className="bg-green-spotify w-fit rounded-2xl p-3 text-sm text-white"
+            >
+              PLAY ON SPOTIFY
+            </Link>
+          )}
         </div>
       </section>
 
-      <div className="grid grid-cols-[repeat(auto-fit,_minmax(7rem,_1fr))] w-full gap-4 p-4 bg-vanila dark:bg-gray rounded-lg">
+      <div className="grid w-full grid-cols-[repeat(auto-fit,_minmax(7rem,_1fr))] gap-4 rounded-lg bg-vanila p-4 dark:bg-gray">
         <TrackFieldCells title="Duration" value={durationParsed} />
         <TrackFieldCells
           title="Key"
