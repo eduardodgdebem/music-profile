@@ -33,7 +33,7 @@ export default async function Track({ params }: { params: { id: string } }) {
 
   return (
     <div className="flex flex-col gap-2 p-2">
-      <section className="flex gap-2">
+      <section className="flex gap-2 max-sm:flex-col">
         <Image
           src={image.url}
           height={image.height}
@@ -42,27 +42,29 @@ export default async function Track({ params }: { params: { id: string } }) {
           className="rounded-lg"
         ></Image>
         <div className="flex flex-col justify-between">
-          <div className="flex flex-col gap-1">
-            <h1 className="text-4xl font-bold dark:text-vanila-bright">
-              {track.name}
-            </h1>
-            <div className="flex">
-              {track.artists.map((artist, i) => (
-                <Link
-                  href={`/artist/${artist.id}`}
-                  key={artist.id}
-                  className="text-2xl duration-300 hover:underline dark:hover:text-vanila-bright"
-                >
-                  <p>
-                    {artist.name} {track.artists.length == i + 1 ? "" : ", "}
-                  </p>
-                </Link>
-              ))}
+          <div className="flex flex-col gap-1 max-sm:flex-row w-full">
+            <div>
+              <h1 className="text-4xl font-bold dark:text-vanila-bright">
+                {track.name}
+              </h1>
+              <div className="flex">
+                {track.artists.map((artist, i) => (
+                  <Link
+                    href={`/artist/${artist.id}`}
+                    key={artist.id}
+                    className="text-2xl duration-300 hover:underline dark:hover:text-vanila-bright"
+                  >
+                    <p>
+                      {artist.name} {track.artists.length == i + 1 ? "" : ", "}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+              <p>
+                {track.album.name} &#x2022;{" "}
+                {track.album.release_date.split("-")[0]}
+              </p>
             </div>
-            <p>
-              {track.album.name} &#x2022;{" "}
-              {track.album.release_date.split("-")[0]}
-            </p>
             {track.preview_url && (
               <div>
                 <PreviewPlayer previewUrl={track.preview_url} />
@@ -72,7 +74,7 @@ export default async function Track({ params }: { params: { id: string } }) {
           {track.external_urls.spotify && (
             <Link
               href={track.external_urls.spotify}
-              className="bg-green-spotify w-fit rounded-2xl p-3 text-sm text-white"
+              className="bg-green-spotify w-fit rounded-2xl p-3 text-sm text-white mt-2"
             >
               PLAY ON SPOTIFY
             </Link>

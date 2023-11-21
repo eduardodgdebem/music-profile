@@ -25,7 +25,7 @@ export const PreviewPlayer = ({ previewUrl }: { previewUrl: string }) => {
   return (
     <button
       onClick={buttonClick}
-      className="h-12 aspect-square flex items-center justify-center rounded-md bg-vanila p-4 leading-3 dark:bg-gray"
+      className="h-12 aspect-square flex items-center justify-center rounded-md bg-vanila p-4 leading-3 dark:bg-gray max-sm:m-4"
     >
       <audio
         src={previewUrl}

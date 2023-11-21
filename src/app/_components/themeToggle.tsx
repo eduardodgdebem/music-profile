@@ -18,7 +18,7 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
-      className="w-1 rounded-lg bg-vanila p-2 px-8 text-2xl transition-all duration-300 hover:bg-vanila-dark dark:bg-gray dark:hover:bg-gray flex justify-center items-center"
+      className="w-1 rounded-lg bg-vanila p-2 px-6 text-2xl  transition-all duration-300 hover:bg-vanila-dark dark:bg-gray dark:hover:bg-gray flex justify-center items-center"
     >
       <p>{theme == "dark" ? "☀️" : "🌙"}</p>
     </button>

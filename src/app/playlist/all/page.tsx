@@ -10,12 +10,11 @@ export default async function Playlists() {
   return (
     <section className="m-2">
       <header className="sticky top-0 z-10 bg-white p-2 dark:bg-black">
-        <h1 className="text-4xl font-bold dark:text-vanila-bright">
+        <h1 className="text-3xl sm:text-4xl font-bold dark:text-vanila-bright">
           Playlists
         </h1>
       </header>
         <PlaylistsGrid playlists={playlists} />
-      
     </section>
   );
 }

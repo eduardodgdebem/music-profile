@@ -14,20 +14,20 @@ export default function TopArtistsNav() {
   const [selected, setSelected] = useState(getSelected(path));
 
   const buttonStyle =
-    "p-2 rounded-md text-sm hover:text-vanila-bright duration-300 hover:bg-vanila-dark dark:hover:bg-gray font-bold";
+    "p-2 rounded-md text-sm hover:text-vanila-bright duration-300 hover:bg-vanila-dark dark:hover:bg-gray font-bold w-full flex justify-center items-center";
   const selectedStyle =
     "bg-vanila dark:bg-gray dark:text-vanila-bright " + buttonStyle;
 
   return (
-    <header className="flex w-full justify-between p-2 sticky top-0 z-10 bg-white dark:bg-black">
-      <h1 className="text-4xl font-bold dark:text-vanila-bright">Top Tracks</h1>
+    <header className="sticky top-0 z-10 flex w-full justify-between bg-white p-2 dark:bg-black">
+      <h1 className="text-3xl sm:text-4xl font-bold dark:text-vanila-bright">Top Tracks</h1>
       <div className="flex gap-2">
         <Link
           href="/track/top/long_term"
           className={selected === "long_term" ? selectedStyle : buttonStyle}
           onClick={() => setSelected("long_term")}
         >
-          All Time
+          <p>All Time</p>
         </Link>
         <Link
           href="/track/top/medium_term"
