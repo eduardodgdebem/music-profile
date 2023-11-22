@@ -6,10 +6,16 @@ export const ThemeToggle = () => {
   const [mounted, setMounted] = useState(false);
   const { systemTheme, theme, setTheme } = useTheme();
 
-  // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
+    console.log(theme )
+    if(systemTheme)
+    setTheme(systemTheme)
     setMounted(true);
   }, []);
+
+  const isDark = () => {
+    return theme === "dark" || (theme === "system" && systemTheme === "dark")
+  }
 
   if (!mounted) {
     return null;
@@ -17,10 +23,10 @@ export const ThemeToggle = () => {
 
   return (
     <button
-      onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
+      onClick={() => (isDark() ? setTheme("light") : setTheme("dark"))}
       className="w-1 rounded-lg bg-vanila p-2 px-6 text-2xl  transition-all duration-300 hover:bg-vanila-dark dark:bg-gray dark:hover:bg-gray flex justify-center items-center"
     >
-      <p>{theme == "dark" ? "☀️" : "🌙"}</p>
+      <p>{isDark() ? "☀️" : "🌙"}</p>
     </button>
   );
 };

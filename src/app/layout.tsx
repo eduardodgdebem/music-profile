@@ -34,7 +34,7 @@ export default async function RootLayout({
             <Providers>
             <div className="flex h-full flex-col-reverse sm:flex-row bg-white text-gray-dark dark:bg-black dark:text-vanila">
               {session && <Nav />}
-              <main className="relative w-full overflow-hidden overflow-y-auto duration-300 max-sm:h-screen sm:opacity-[0.95] sm:hover:opacity-100">
+              <main className="relative h-full w-full overflow-hidden overflow-y-auto duration-300 sm:opacity-[0.95] sm:hover:opacity-100">
                 {children}
               </main>
             </div>
