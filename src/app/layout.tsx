@@ -29,12 +29,12 @@ export default async function RootLayout({
 
   return (
       <html lang="en" >
-        <body className="bg-vanila-brigh max-sm:h-[100svh] overflow-hidden text-vanila">
+        <body className="bg-vanila-brigh h-[100svh] overflow-hidden text-vanila">
           <TRPCReactProvider cookies={cookies().toString()}>
             <Providers>
             <div className="flex h-full flex-col-reverse sm:flex-row bg-white text-gray-dark dark:bg-black dark:text-vanila">
               {session && <Nav />}
-              <main className="relative h-full w-full overflow-hidden overflow-y-auto duration-300 sm:opacity-[0.95] sm:hover:opacity-100">
+              <main className="relative h-full w-full overflow-hidden overflow-y-auto duration-300 sm:opacity-[0.95]">
                 {children}
               </main>
             </div>

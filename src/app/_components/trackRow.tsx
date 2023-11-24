@@ -14,7 +14,7 @@ export default function TrackRow({ track }: { track: trackType }) {
           width={track.album?.images[2].width}
           height={track.album?.images[2].height}
           alt={`Picture of the ${track.name} album`}
-          className="aspect-square h-[64px] rounded-sm object-cover "
+          className="aspect-square h-[64px] object-cover "
         />
       )}
       <div key={track.id}>

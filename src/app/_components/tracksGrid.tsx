@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+
 import { trackType } from "~/server/api/routers/spotify.types";
 import TrackRow from "./trackRow";
 

@@ -8,7 +8,7 @@ export default function ArtistCard({ artist }: { artist: artistType }) {
   return (
     <Link
       href={`/artist/${artist.id}`}
-      className="bg-black font-medium text-vanila hover:text-white relative m-2 overflow-hidden rounded-lg shadow-lg duration-300 "
+      className="bg-black font-medium text-vanila hover:text-white relative m-2 overflow-hidden shadow-lg duration-300 "
     >
       <header className="aspect-square h-[160px] overflow-hidden bg-red-700">
         <Image
@@ -19,7 +19,7 @@ export default function ArtistCard({ artist }: { artist: artistType }) {
           className="h-full object-cover  drop-shadow-xl hover:opacity-50 duration-300"
         />
       </header>
-      <div className="pointer-events-none absolute bottom-0 w-full bg-gradient-to-t from-[black] to-[transparent] p-2">
+      <div className="w-full py-2">
         <h3>{artist.name}</h3>
       </div>
     </Link>

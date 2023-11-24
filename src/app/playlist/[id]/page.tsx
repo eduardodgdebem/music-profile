@@ -20,7 +20,7 @@ export default async function Artist({ params }: { params: { id: string } }) {
         <img
           src={image.url}
           alt={`${playlist.name} cover`}
-          className="objcet-cover h-[320px] min-w-[320px] rounded-md max-sm:h-[160px] max-sm:min-w-[160px]"
+          className="objcet-cover h-[320px] min-w-[320px] max-sm:h-[160px] max-sm:min-w-[160px]"
         />
         <div className="w-fit">
           <h1 className="text-3xl sm:text-4xl dark:text-vanila-bright">{playlist.name}</h1>

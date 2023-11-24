@@ -1,7 +1,4 @@
-import { playlistType } from "~/server/api/routers/spotify.types";
 import { api } from "~/trpc/server";
-import Image from "next/image";
-import Link from "next/link";
 import { PlaylistsGrid } from "~/app/_components/playlistsGrid";
 
 export default async function Playlists() {

@@ -39,7 +39,6 @@ export default async function Track({ params }: { params: { id: string } }) {
           height={image.height}
           width={image.width}
           alt={`Photo of the album ${track.album.name}`}
-          className="rounded-lg"
         ></Image>
         <div className="flex flex-col justify-between">
           <div className="flex flex-col gap-1 max-sm:flex-row w-full">

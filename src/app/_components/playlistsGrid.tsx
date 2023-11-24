@@ -7,20 +7,20 @@ const PlayListCard = ({ playlist }: { playlist: playlistType }) => {
   return (
     <Link
       href={`/playlist/${playlist.id}`}
-      className="relative overflow-hidden rounded-md bg-gray text-vanila duration-300 hover:text-white hover:opacity-50"
+      className="overflow-hidden text-vanila duration-300 hover:text-white hover:opacity-50 flex flex-col justify-center"
     >
-      <div className="flex aspect-square h-[320px] items-center justify-center  bg-gray object-cover">
+      <div className="flex aspect-square h-[300px] items-center justify-center object-cover">
         {image ? (
           <img
             src={image.url}
             alt={playlist.name}
-            className=" h-full object-cover"
+            className="aspect-square h-[300px] object-cover"
           />
         ) : (
           <p>No image</p>
         )}
       </div>
-      <div className="pointer-events-none absolute bottom-0 flex h-20 w-full items-end bg-gradient-to-t from-black to-[transparent] p-2 text-2xl">
+      <div className="flex items-end p-2 text-2xl break-words">
         <h3>{playlist.name}</h3>
       </div>
     </Link>

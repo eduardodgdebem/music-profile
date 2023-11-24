@@ -9,27 +9,18 @@ export default async function Artist({ params }: { params: { id: string } }) {
   const image = artist.images?.[1];
 
   return (
-    <section className="p-2 w-full h-full flex justify-center items-center">
-      <div className="flex flex-col gap-4 h-fit">
+    <section className="flex h-full w-full items-center justify-center p-2">
+      <div className="flex h-fit flex-col gap-4">
         <AngledElement>
-
-        <Image
-          src={image.url}
-          height={image.height}
-          width={image.width}
-          alt={`Photo of ${artist.name}`}
-          className="rounded-lg"
-        ></Image>
+          <Image
+            src={image.url}
+            height={image.height}
+            width={image.width}
+            alt={`Photo of ${artist.name}`}
+          ></Image>
         </AngledElement>
-        {/* <AngledImage
-          src={image.url}
-          height={image.height}
-          width={image.width}
-          alt={`Photo of ${artist.name}`}
-        /> */}
-
         <div>
-          <h1 className="dark:text-vanila-bright text-4xl font-bold">
+          <h1 className="text-4xl font-bold dark:text-vanila-bright">
             {artist.name}
           </h1>
           <p className="text-2xl">followers: {artist.followers.total}</p>

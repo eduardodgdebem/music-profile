@@ -33,7 +33,6 @@ export default async function Home() {
             height={300}
             width={300}
             alt="User profile image"
-            className="rounded-md"
           />
         ) : (
           <div className="flex aspect-square h-[300px] items-center justify-center rounded-md bg-vanila dark:bg-gray">
