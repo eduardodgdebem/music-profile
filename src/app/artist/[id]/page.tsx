@@ -11,14 +11,12 @@ export default async function Artist({ params }: { params: { id: string } }) {
   return (
     <section className="flex h-full w-full items-center justify-center p-2">
       <div className="flex h-fit flex-col gap-4">
-        <AngledElement>
           <Image
             src={image.url}
             height={image.height}
             width={image.width}
             alt={`Photo of ${artist.name}`}
           ></Image>
-        </AngledElement>
         <div>
           <h1 className="text-4xl font-bold dark:text-vanila-bright">
             {artist.name}
