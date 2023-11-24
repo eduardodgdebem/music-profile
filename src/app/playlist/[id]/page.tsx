@@ -1,6 +1,7 @@
 import { api } from "~/trpc/server";
 import TrackRow from "~/app/_components/trackRow";
 import Link from "next/link";
+import { SpotifySvg } from "~/app/_components/svg/spotifySvg";
 
 export default async function Artist({ params }: { params: { id: string } }) {
   const playlist = await api.spotify.getPlaylistsById.query(params);
@@ -23,15 +24,20 @@ export default async function Artist({ params }: { params: { id: string } }) {
           className="objcet-cover h-[320px] min-w-[320px] max-sm:h-[160px] max-sm:min-w-[160px]"
         />
         <div className="w-fit">
-          <h1 className="text-3xl sm:text-4xl dark:text-vanila-bright">{playlist.name}</h1>
-          <p className="text-base sm:text-xl">by {playlist.owner.display_name}</p>
+          <h1 className="text-3xl dark:text-vanila-bright sm:text-4xl">
+            {playlist.name}
+          </h1>
+          <p className="text-base sm:text-xl">
+            by {playlist.owner.display_name}
+          </p>
           <p className="text-base sm:text-xl">{playlist.tracks.total} tracks</p>
           {playlist.external_urls.spotify && (
             <div className="mt-2">
               <Link
                 href={playlist.external_urls.spotify}
-                className="bg-green-spotify rounded-2xl p-3 text-sm text-white"
+                className="flex w-fit gap-2 rounded-2xl bg-green-spotify p-3 text-lg font-medium text-white"
               >
+                <SpotifySvg className="h-7" />
                 PLAY ON SPOTIFY
               </Link>
             </div>

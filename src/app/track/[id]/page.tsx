@@ -3,6 +3,7 @@ import Image from "next/image";
 import { keysByNumber, modeByNumber } from "~/server/api/routers/spotify.types";
 import Link from "next/link";
 import { PreviewPlayer } from "~/app/_components/previewPlayer";
+import { SpotifySvg } from "~/app/_components/svg/spotifySvg";
 
 const TrackFieldCells = ({
   value,
@@ -41,7 +42,7 @@ export default async function Track({ params }: { params: { id: string } }) {
           alt={`Photo of the album ${track.album.name}`}
         ></Image>
         <div className="flex flex-col justify-between">
-          <div className="flex flex-col gap-1 max-sm:flex-row w-full">
+          <div className="flex w-full flex-col gap-1 max-sm:flex-row">
             <div>
               <h1 className="text-4xl font-bold dark:text-vanila-bright">
                 {track.name}
@@ -71,12 +72,13 @@ export default async function Track({ params }: { params: { id: string } }) {
             )}
           </div>
           {track.external_urls.spotify && (
-            <Link
-              href={track.external_urls.spotify}
-              className="bg-green-spotify w-fit rounded-2xl p-3 text-sm text-white mt-2"
-            >
-              PLAY ON SPOTIFY
-            </Link>
+              <Link
+                href={track.external_urls.spotify}
+                className="flex gap-2 rounded-2xl bg-green-spotify p-3 text-lg text-white font-medium w-fit"
+              >
+                <SpotifySvg className="h-7" />
+                PLAY ON SPOTIFY
+              </Link>
           )}
         </div>
       </section>
