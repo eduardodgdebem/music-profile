@@ -14,7 +14,7 @@ const TrackFieldCells = ({
 }) => {
   return (
     <div>
-      <h2 className="text-2xl dark:text-vanila-bright">{value}</h2>
+      <h2 className="dark:text-vanila-bright text-2xl">{value}</h2>
       <p>{title}</p>
     </div>
   );
@@ -44,15 +44,15 @@ export default async function Track({ params }: { params: { id: string } }) {
         <div className="flex flex-col justify-between">
           <div className="flex w-full flex-col gap-1 max-sm:flex-row">
             <div>
-              <h1 className="text-4xl font-bold dark:text-vanila-bright">
+              <h1 className="dark:text-vanila-bright text-4xl font-bold">
                 {track.name}
               </h1>
-              <div className="flex">
+              <div className="flex flex-wrap">
                 {track.artists.map((artist, i) => (
                   <Link
                     href={`/artist/${artist.id}`}
                     key={artist.id}
-                    className="text-2xl duration-300 hover:underline dark:hover:text-vanila-bright"
+                    className="dark:hover:text-vanila-bright max-w-fit text-2xl duration-300 hover:underline"
                   >
                     <p>
                       {artist.name} {track.artists.length == i + 1 ? "" : ", "}
@@ -72,19 +72,19 @@ export default async function Track({ params }: { params: { id: string } }) {
             )}
           </div>
           {track.external_urls.spotify && (
-              <Link
-                href={track.external_urls.spotify}
-                target="_blank"
-                className="flex gap-2 rounded-2xl bg-green-spotify p-3 text-lg text-white font-medium w-fit"
-              >
-                <SpotifySvg className="h-7" />
-                PLAY ON SPOTIFY
-              </Link>
+            <Link
+              href={track.external_urls.spotify}
+              target="_blank"
+              className="bg-green-spotify flex w-fit gap-2 rounded-2xl p-3 text-lg font-medium text-white"
+            >
+              <SpotifySvg className="h-7" />
+              PLAY ON SPOTIFY
+            </Link>
           )}
         </div>
       </section>
 
-      <div className="grid w-full grid-cols-[repeat(auto-fit,_minmax(7rem,_1fr))] gap-4 rounded-lg bg-vanila p-4 dark:bg-gray">
+      <div className="bg-vanila dark:bg-gray grid w-full grid-cols-[repeat(auto-fit,_minmax(7rem,_1fr))] gap-4 rounded-lg p-4">
         <TrackFieldCells title="Duration" value={durationParsed} />
         <TrackFieldCells
           title="Key"
@@ -98,7 +98,10 @@ export default async function Track({ params }: { params: { id: string } }) {
           title="Time Signature"
           value={audioFeatures.time_signature ?? ""}
         />
-        <TrackFieldCells title="Tempo(BPM)" value={audioFeatures.mode ?? ""} />
+        <TrackFieldCells
+          title="Tempo(BPM)"
+          value={Math.floor(audioFeatures.tempo) ?? ""}
+        />
         <TrackFieldCells title="Popularity" value={track.popularity ?? ""} />
       </div>
     </div>

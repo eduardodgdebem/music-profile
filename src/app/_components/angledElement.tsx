@@ -1,6 +1,7 @@
 "use client";
 
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
 
 const useMousePosition = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -48,7 +49,7 @@ export const AngledElement = ({ children }: { children?: ReactNode }) => {
 
   return (
     <div
-      className="overflow-hidden w-fit h-fit"
+      className="h-fit w-fit overflow-hidden"
       ref={imageWrapperRef}
       style={{
         transformStyle: "preserve-3d",

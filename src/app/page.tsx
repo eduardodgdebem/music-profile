@@ -13,7 +13,7 @@ export default async function Home() {
       <section className="flex h-full w-full items-center justify-center">
         <Link
           href="/api/auth/signin"
-          className="rounded-full bg-vanila-dark px-10 py-3 font-semibold no-underline transition hover:bg-white/20 dark:bg-gray"
+          className="bg-vanila-dark dark:bg-gray rounded-full px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
         >
           Sign in
         </Link>
@@ -35,7 +35,7 @@ export default async function Home() {
             alt="User profile image"
           />
         ) : (
-          <div className="flex aspect-square h-[300px] items-center justify-center rounded-md bg-vanila dark:bg-gray">
+          <div className="bg-vanila dark:bg-gray flex aspect-square h-[300px] items-center justify-center rounded-md">
             No Image
           </div>
         )}
@@ -49,7 +49,7 @@ export default async function Home() {
           <div className="mb-2">
             <Link
               href={"/api/auth/signout"}
-              className="rounded-full bg-vanila-dark px-10 py-3 font-semibold no-underline transition hover:bg-white/20 dark:bg-gray"
+              className="bg-vanila-dark dark:bg-gray rounded-full px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
             >
               Sign out
             </Link>
@@ -58,7 +58,7 @@ export default async function Home() {
       </div>
       <section className="relative overflow-y-auto sm:max-h-[calc(100%-310px)]">
         <header className="sticky top-0 z-10 flex w-full justify-between bg-white pb-2 pt-2 dark:bg-black">
-          <h2 className="text-2xl font-bold dark:text-vanila sm:text-3xl">
+          <h2 className="dark:text-vanila text-2xl font-bold sm:text-3xl">
             Recents Tracks
           </h2>
         </header>

@@ -2,9 +2,9 @@ import {
   getServerSession,
   type DefaultSession,
   type NextAuthOptions,
-  Session,
 } from "next-auth";
-import { JWT } from "next-auth/jwt";
+import type { Session } from "next-auth";
+import type { JWT } from "next-auth/jwt";
 import SpotifyProvider from "next-auth/providers/spotify";
 
 import { env } from "~/env.mjs";
@@ -89,17 +89,20 @@ export const authOptions: NextAuthOptions = {
       // access token has expired
       return await refreshAccessToken(token as JWTWithAcessToken);
     },
-    session({ session, token, user }) {
+    session({ session, token }) {
       // Send properties to the client, like an access_token from a provider.
-      (session as SessionWithAcessToken).accessToken =
-        (token as JWTWithAcessToken).accessToken;
+      (session as SessionWithAcessToken).accessToken = (
+        token as JWTWithAcessToken
+      ).accessToken;
       return session;
     },
   },
   secret: env.NEXTAUTH_SECRET,
 };
 
-async function refreshAccessToken(token: JWTWithAcessToken): Promise<JWTWithAcessToken> {
+async function refreshAccessToken(
+  token: JWTWithAcessToken,
+): Promise<JWTWithAcessToken> {
   const params = new URLSearchParams();
   params.append("grant_type", "refresh_token");
   params.append("refresh_token", token.refreshToken);
@@ -113,7 +116,11 @@ async function refreshAccessToken(token: JWTWithAcessToken): Promise<JWTWithAces
     },
     body: params,
   });
-  const data = await response.json() as {access_token: string, refresh_token: string, expires_in: number};
+  const data = (await response.json()) as {
+    access_token: string;
+    refresh_token: string;
+    expires_in: number;
+  };
   return {
     ...token,
     accessToken: data.access_token,

@@ -7,7 +7,7 @@ const PlayListCard = ({ playlist }: { playlist: playlistType }) => {
   return (
     <Link
       href={`/playlist/${playlist.id}`}
-      className="overflow-hidden text-vanila duration-300 hover:text-white hover:opacity-50 flex flex-col justify-center"
+      className="text-vanila flex flex-col justify-center overflow-hidden duration-300 hover:text-white hover:opacity-50"
     >
       <div className="flex aspect-square h-[300px] items-center justify-center object-cover">
         {image ? (
@@ -20,8 +20,10 @@ const PlayListCard = ({ playlist }: { playlist: playlistType }) => {
           <p>No image</p>
         )}
       </div>
-      <div className="flex items-end p-2 text-2xl break-words">
-        <h3>{playlist.name}</h3>
+      <div className="flex items-end break-words p-2 text-2xl">
+        <h3 className="text-gray-dark dark:text-vanila-bright text-2xl">
+          {playlist.name}
+        </h3>
       </div>
     </Link>
   );

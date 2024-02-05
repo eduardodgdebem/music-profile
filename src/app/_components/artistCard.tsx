@@ -8,19 +8,21 @@ export default function ArtistCard({ artist }: { artist: artistType }) {
   return (
     <Link
       href={`/artist/${artist.id}`}
-      className="bg-black font-medium text-vanila hover:text-white relative m-2 overflow-hidden shadow-lg duration-300 "
+      className="text-vanila relative m-2 overflow-hidden font-medium duration-300 hover:text-white "
     >
-      <header className="aspect-square h-[160px] overflow-hidden bg-red-700">
+      <header className="aspect-square h-[160px] overflow-hidden bg-red-700 ">
         <Image
           src={img.url}
           width={img.width}
           height={img.height}
           alt={`Picture of ${artist.name}`}
-          className="h-full object-cover  drop-shadow-xl hover:opacity-50 duration-300"
+          className="h-full object-cover drop-shadow-xl duration-300 hover:opacity-50"
         />
       </header>
       <div className="w-full py-2">
-        <h3>{artist.name}</h3>
+        <h3 className="text-gray-dark dark:text-vanila-bright">
+          {artist.name}
+        </h3>
       </div>
     </Link>
   );
