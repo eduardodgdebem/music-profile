@@ -35,6 +35,7 @@ export default async function Artist({ params }: { params: { id: string } }) {
             <div className="mt-2">
               <Link
                 href={playlist.external_urls.spotify}
+                target="_blank"
                 className="flex w-fit gap-2 rounded-2xl bg-green-spotify p-3 text-lg font-medium text-white"
               >
                 <SpotifySvg className="h-7" />

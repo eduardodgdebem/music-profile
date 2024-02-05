@@ -8,6 +8,7 @@ import { Nav } from "./_components/nav";
 import { getServerAuthSession } from "~/server/auth";
 import { ThemeProvider } from "next-themes";
 import { Providers } from "./providers";
+import MediaPlayer from "./_components/mediaPlayer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,19 +29,22 @@ export default async function RootLayout({
   const session = await getServerAuthSession();
 
   return (
-      <html lang="en" >
-        <body className="bg-vanila-brigh h-[100svh] overflow-hidden text-vanila">
-          <TRPCReactProvider cookies={cookies().toString()}>
-            <Providers>
-            <div className="flex h-full flex-col-reverse sm:flex-row bg-white text-gray-dark dark:bg-black dark:text-vanila">
+    <html lang="en">
+      <body className="bg-vanila-brigh h-[100svh] overflow-hidden text-vanila">
+        <TRPCReactProvider cookies={cookies().toString()}>
+          <Providers>
+            <div className="flex h-full flex-col-reverse bg-white text-gray-dark dark:bg-black dark:text-vanila sm:flex-row">
               {session && <Nav />}
-              <main className="relative h-full w-full overflow-hidden overflow-y-auto duration-300 sm:opacity-[0.95]">
-                {children}
+              <main className="relative flex h-full w-full flex-col justify-between overflow-hidden overflow-y-auto duration-300 sm:opacity-[0.95]">
+                <section className="max-h-[calc(100%-5rem)] overflow-x-auto">{children}</section>
+                <section className="w-full h-20 border-t-2 border-gray  ">
+                  <MediaPlayer />
+                </section>
               </main>
             </div>
-            </Providers>
-          </TRPCReactProvider>
-        </body>
-      </html>
+          </Providers>
+        </TRPCReactProvider>
+      </body>
+    </html>
   );
 }

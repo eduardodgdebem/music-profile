@@ -7,7 +7,6 @@ export const ThemeToggle = () => {
   const { systemTheme, theme, setTheme } = useTheme();
 
   useEffect(() => {
-    console.log(theme )
     if(systemTheme)
     setTheme(systemTheme)
     setMounted(true);

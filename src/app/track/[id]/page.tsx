@@ -74,6 +74,7 @@ export default async function Track({ params }: { params: { id: string } }) {
           {track.external_urls.spotify && (
               <Link
                 href={track.external_urls.spotify}
+                target="_blank"
                 className="flex gap-2 rounded-2xl bg-green-spotify p-3 text-lg text-white font-medium w-fit"
               >
                 <SpotifySvg className="h-7" />

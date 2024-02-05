@@ -13,7 +13,7 @@ export default async function Home() {
       <section className="flex h-full w-full items-center justify-center">
         <Link
           href="/api/auth/signin"
-          className="rounded-full bg-vanila-dark dark:bg-gray px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+          className="rounded-full bg-vanila-dark px-10 py-3 font-semibold no-underline transition hover:bg-white/20 dark:bg-gray"
         >
           Sign in
         </Link>
@@ -49,7 +49,7 @@ export default async function Home() {
           <div className="mb-2">
             <Link
               href={"/api/auth/signout"}
-              className="rounded-full bg-vanila-dark dark:bg-gray px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+              className="rounded-full bg-vanila-dark px-10 py-3 font-semibold no-underline transition hover:bg-white/20 dark:bg-gray"
             >
               Sign out
             </Link>
