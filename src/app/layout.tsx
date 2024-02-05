@@ -30,16 +30,18 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className="bg-vanila-brigh h-[100svh] overflow-hidden text-vanila">
+      <body className="bg-vanila-brigh text-vanila h-[100svh] overflow-hidden">
         <TRPCReactProvider cookies={cookies().toString()}>
           <Providers>
-            <div className="flex h-full flex-col-reverse bg-white text-gray-dark dark:bg-black dark:text-vanila sm:flex-row">
+            <div className="text-gray-dark dark:text-vanila flex h-full flex-col-reverse bg-white dark:bg-black sm:flex-row">
               {session && <Nav />}
               <main className="relative flex h-full w-full flex-col justify-between overflow-hidden overflow-y-auto duration-300 sm:opacity-[0.95]">
-                <section className="max-h-[calc(100%-5rem)] overflow-x-auto">{children}</section>
-                <section className="w-full h-20 border-t-2 border-gray  ">
+                {/* <section className="max-h-[calc(100%-5rem)] overflow-x-auto"> */}
+                {children}
+                {/* </section> */}
+                {/* <section className="w-full h-20 border-t-2 border-gray  ">
                   <MediaPlayer />
-                </section>
+                </section> */}
               </main>
             </div>
           </Providers>
