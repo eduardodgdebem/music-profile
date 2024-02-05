@@ -1,8 +1,7 @@
 "use client";
 
-import { AngledElement } from "~/app/_components/angledElement";
 import ArtistCard from "../../../_components/artistCard";
-import { artistType } from "~/server/api/routers/spotify.types";
+import type { artistType } from "~/server/api/routers/spotify.types";
 
 export default function ArtistGrid({ artists }: { artists: artistType[] }) {
   return (
