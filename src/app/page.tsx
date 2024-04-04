@@ -4,21 +4,18 @@ import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 import Image from "next/image";
 import TracksGrid from "./_components/tracksGrid";
+import { SignInButton } from "./_components/signInButton";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
   const session = await getServerAuthSession();
 
-  if (!session)
-    return (
-      <section className="flex h-full w-full items-center justify-center">
-        <Link
-          href="/api/auth/signin"
-          className="bg-vanila-dark dark:bg-gray rounded-full px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
-        >
-          Sign in
-        </Link>
-      </section>
-    );
+  if (!session) return redirect("signIn");
+  // return (
+  //   <section className="flex h-full w-full items-center justify-center">
+  //     <SignInButton />
+  //   </section>
+  // );
 
   const user = await api.spotify.getUser.query();
   const image = user.images[user.images.length - 1];
@@ -35,7 +32,7 @@ export default async function Home() {
             alt="User profile image"
           />
         ) : (
-          <div className="bg-vanila dark:bg-gray flex aspect-square h-[300px] items-center justify-center rounded-md">
+          <div className="flex aspect-square h-[300px] items-center justify-center rounded-md bg-vanila dark:bg-gray">
             No Image
           </div>
         )}
@@ -49,7 +46,7 @@ export default async function Home() {
           <div className="mb-2">
             <Link
               href={"/api/auth/signout"}
-              className="bg-vanila-dark dark:bg-gray rounded-full px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+              className="rounded-full bg-vanila-dark px-10 py-3 font-semibold no-underline transition hover:bg-white/20 dark:bg-gray"
             >
               Sign out
             </Link>
@@ -58,7 +55,7 @@ export default async function Home() {
       </div>
       <section className="relative overflow-y-auto sm:max-h-[calc(100%-310px)]">
         <header className="sticky top-0 z-10 flex w-full justify-between bg-white pb-2 pt-2 dark:bg-black">
-          <h2 className="dark:text-vanila text-2xl font-bold sm:text-3xl">
+          <h2 className="text-2xl font-bold dark:text-vanila sm:text-3xl">
             Recents Tracks
           </h2>
         </header>

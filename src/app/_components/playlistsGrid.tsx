@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { playlistType } from "~/server/api/routers/spotify.types";
+import type { playlistType } from "~/server/api/routers/spotify.types";
 
 const PlayListCard = ({ playlist }: { playlist: playlistType }) => {
   const image = playlist.images[1] || playlist.images[0];
